@@ -1,0 +1,32 @@
+# CI de Nível 01 - Disparo Manual através de clique
+
+# nome da pipeline
+name: 'Execução Manual'
+
+# gatilho manual = workflow_dispatch
+on:
+    workflow_dispatch:
+
+# tarefas dentro da pipeline = jobs
+jobs:
+
+    # nome do job
+    unit-tests:
+        # mquina onde o job vai rooar
+        runs-on: ubuntu-latest
+
+        # passos do job
+        steps:
+            #clone do projeto
+            - uses: actions/checkout@v4
+
+            # instalação do node
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 24.x
+
+            - name: Instalando dependências
+              run: npm install
+
+            - name: Executando testes unitários
+              run: npm test
