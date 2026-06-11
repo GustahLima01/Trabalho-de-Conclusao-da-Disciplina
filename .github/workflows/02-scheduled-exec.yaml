@@ -1,11 +1,12 @@
-# CI de Nível 01 - Disparo Manual através de clique
+# CI de Nível 02 - Execução Agendado
 
 # nome da pipeline
-name: 'Execução Manual'
+name: 'Scheduled Execution'
 
 # gatilho manual = workflow_dispatch
 on:
-    workflow_dispatch:
+    Scheduled:
+      - cron: '*/6 * * * *'
 
 # tarefas dentro da pipeline = jobs
 jobs:
