@@ -5,7 +5,7 @@ name: 'Scheduled Execution'
 
 # gatilho manual = workflow_dispatch
 on:
-    Scheduled:
+    scheduled:
       - cron: '*/6 * * * *'
 
 # tarefas dentro da pipeline = jobs
