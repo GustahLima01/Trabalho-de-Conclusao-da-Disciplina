@@ -3,7 +3,6 @@
 # nome da pipeline
 name: 'Scheduled Execution'
 
-# gatilho manual = workflow_dispatch
 on:
   schedule:
     - cron: '*/6 * * * *'
