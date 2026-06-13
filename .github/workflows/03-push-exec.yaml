@@ -1,0 +1,39 @@
+# nome da pipeline
+name: 'Execução por Push'
+
+on:
+  push:
+    branches:
+      - main
+
+# tarefas dentro da pipeline = jobs
+jobs:
+
+    # nome do job
+    unit-tests:
+        # mquina onde o job vai rooar
+        runs-on: ubuntu-latest
+
+        # passos do job
+        steps:
+            #clone do projeto
+            - uses: actions/checkout@v4
+
+            # instalação do node
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 24.x
+
+            - name: Instalando dependências
+              run: npm install
+
+            - name: Executando testes unitários
+              run: npm test
+
+            - name: Publicando relatório Mochawesome
+              uses: actions/upload-artifact@v4
+              if: ${{ always() }}
+              with:
+                name: mochawesome-report
+                path: mochawesome-report/
+                if-no-files-found: warn
